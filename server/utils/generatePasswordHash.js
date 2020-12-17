@@ -1,2 +1,4 @@
-const passwordHash = require('password-hash');
-module.exports = (password) => passwordHash.generate(password);
+const { generate, verify } = require('password-hash');
+exports.verifyPassword = (password, hashedPassword) =>
+  verify(password, hashedPassword);
+exports.generatePasswordHash = (password) => generate(password);
