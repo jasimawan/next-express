@@ -1,8 +1,8 @@
 module.exports = {
-  Query: {
-    ...require('./UserResolvers/Query'),
-  },
-  Mutation: {
-    ...require('./AuthResolvers/Mutation'),
-  },
+    Query: {
+        ...require('./UserResolvers/Query')
+    },
+    Mutation: {
+        ...require('./AuthResolvers/Mutation')
+    }
 };
