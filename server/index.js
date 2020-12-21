@@ -20,8 +20,8 @@ app.prepare()
             context: ({ req, ...rest }) => {
                 const token = req.headers.authorization || '';
                 if (token) {
-                    const jwtData = getUserFromJwt(token);
-                    return { jwtData, rest };
+                    const { id } = getUserFromJwt(token);
+                    return { id, rest };
                 }
                 return rest;
             }

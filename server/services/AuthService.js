@@ -10,7 +10,7 @@ exports.signUpUser = async (data) => {
         ...data,
         password: generatePasswordHash(data.password)
     }).save();
-    const token = generateJwt({ _id: user._id });
+    const token = generateJwt({ id: user._id });
     return {
         user,
         token
@@ -21,7 +21,7 @@ exports.loginUser = async (data) => {
     if (!user) throw new Error('User not found');
     if (!verifyPassword(data.password, user.password))
         throw new Error('Invalid password');
-    const token = generateJwt({ _id: user._id });
+    const token = generateJwt({ id: user._id });
     return {
         user,
         token

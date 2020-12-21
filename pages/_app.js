@@ -1,8 +1,15 @@
 // import App from 'next/app'
+import { ApolloProvider } from '@apollo/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/styles/main.css';
+import { useApollo } from '../lib/apolloClient';
 function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />;
+    const client = useApollo(pageProps.initialApolloState);
+    return (
+        <ApolloProvider client={client}>
+            <Component {...pageProps} />
+        </ApolloProvider>
+    );
 }
 
 // Only uncomment this method if you have blocking data requirements for
