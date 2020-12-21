@@ -1,9 +1,13 @@
+import MainLayout from '../components/MainLayout';
+
 const Index = () => {
-  return (
-    <div>
-      <h1 className={'primary'}>Home Page {process.env.SECRET}</h1>
-    </div>
-  );
+    return (
+        <MainLayout>
+            <div className={'container'}>
+                <h1 className={'primary'}>Home Page</h1>
+            </div>
+        </MainLayout>
+    );
 };
 
 export default Index;

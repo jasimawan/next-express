@@ -1,14 +1,8 @@
 // import App from 'next/app'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from '../components/Header';
 import '../assets/styles/main.css';
 function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Header />
-      <Component {...pageProps} />
-    </>
-  );
+    return <Component {...pageProps} />;
 }
 
 // Only uncomment this method if you have blocking data requirements for
