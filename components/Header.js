@@ -1,5 +1,4 @@
 import { Navbar, Nav } from 'react-bootstrap';
-import use from 'next/link';
 function Header() {
     const router = useRo;
     return (
