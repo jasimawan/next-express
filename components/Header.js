@@ -1,6 +1,5 @@
 import { Navbar, Nav } from 'react-bootstrap';
 function Header() {
-    const router = useRo;
     return (
         <Navbar bg='light' expand='lg'>
             <Navbar.Brand href='/'>Next Application</Navbar.Brand>
