@@ -4,7 +4,7 @@ const about = () => {
     return (
         <MainLayout>
             <div className={'container'}>
-                <div>ABout us</div>
+                <h1>About us</h1>
             </div>
         </MainLayout>
     );

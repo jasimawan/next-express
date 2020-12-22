@@ -1,8 +1,8 @@
 // import App from 'next/app'
 import { ApolloProvider } from '@apollo/client';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/styles/main.css';
 import { useApollo } from '../lib/apolloClient';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/main.css';
 function MyApp({ Component, pageProps }) {
     const client = useApollo(pageProps.initialApolloState);
     return (

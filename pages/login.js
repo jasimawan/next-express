@@ -7,7 +7,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     return (
         <AuthLayout>
-            <div className={'container'}>
+            <div className={'container-sm'}>
                 <div className={'auth-wrapper'}>
                     <form className={'auth-form'}>
                         <div className={'form-group'}>
