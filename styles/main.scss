@@ -1,13 +1,19 @@
 @import './colors.scss';
 @import './_auth.module.scss';
-/* .app-wrapper {
+html {
+    font-size: 13px;
+}
+.app-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-} */
+}
 main {
     flex-grow: 1;
 }
 .btn-max-width {
     width: 100%;
+}
+p {
+    font-size: 1.12rem;
 }

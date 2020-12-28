@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
-import AuthLayout from '../components/AuthLayout';
+import { useRouter } from 'next/router';
+import MainLayout from '../components/MainLayout';
+import { userContext } from '../contexts/UserContext';
 
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const router = useRouter();
+    const { user } = useContext(userContext);
+    if (user) router.push('/');
     return (
-        <AuthLayout>
+        <MainLayout>
             <div className={'container'}>
                 <div className={'auth-wrapper'}>
                     <form className={'auth-form'}>
@@ -55,7 +60,7 @@ const Signup = () => {
                     </form>
                 </div>
             </div>
-        </AuthLayout>
+        </MainLayout>
     );
 };
 

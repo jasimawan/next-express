@@ -1,29 +1,65 @@
-import { Navbar, Nav } from 'react-bootstrap';
+// import { Navbar, Nav } from 'react-bootstrap';
 import Link from 'next/link';
+import { UserConsumer } from '../contexts/UserContext';
+import styles from '../styles/header.module.scss';
 function Header() {
     return (
-        <Navbar bg='light' expand='lg'>
-            <Navbar.Brand href='/'>Next Application</Navbar.Brand>
-            <Navbar.Toggle aria-controls='basic-navbar-nav' />
-            <Navbar.Collapse id='basic-navbar-nav'>
-                <Nav className='mr-auto'>
-                    <Link href='/' passHref>
-                        <Nav.Link>Home</Nav.Link>
-                    </Link>
-                    <Link href='/about' passHref>
-                        <Nav.Link>About</Nav.Link>
-                    </Link>
-                </Nav>
-                <Nav>
-                    <Link href='/login' passHref>
-                        <Nav.Link>Login</Nav.Link>
-                    </Link>
-                    <Link href='/signup' passHref>
-                        <Nav.Link>Sign Up</Nav.Link>
-                    </Link>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
+        <div className={styles.wrapper}>
+            <div className={'container'}>
+                <div className={styles.inner}>
+                    <div className={styles.left}>
+                        <h1>Logo</h1>
+                    </div>
+                    <nav className={styles.right}>
+                        <ul>
+                            <li>
+                                <Link href={'/'}>Home</Link>
+                            </li>
+                            <li>
+                                <Link href={'/about'}>About</Link>
+                            </li>
+                            <UserConsumer>
+                                {({ user, logOut }) =>
+                                    user ? (
+                                        <>
+                                            <li>
+                                                <button
+                                                    className={
+                                                        'btn btn-primary'
+                                                    }
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        logOut();
+                                                    }}
+                                                >
+                                                    Logout
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <p>Welcome! {user.email}</p>
+                                            </li>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <li>
+                                                <Link href={'/login'}>
+                                                    Login
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link href={'/signup'}>
+                                                    Sign Up
+                                                </Link>
+                                            </li>
+                                        </>
+                                    )
+                                }
+                            </UserConsumer>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     );
 }
 
