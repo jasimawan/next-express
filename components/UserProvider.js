@@ -1,36 +1,50 @@
-import React from 'react';
-import { UserProvider as UserProvider } from '../contexts/UserContext';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import React, { useEffect, useState } from 'react';
+import { UserProvider } from '../contexts/UserContext';
+import ScreenLoader from './ScreenLoader';
 
-class _UserProvider extends React.Component {
-    state = {
-        user: null
-    };
-    logOut = () => {
-        localStorage.removeItem('user');
-        this.setState({ ...this.state, user: null });
-    };
-    logIn = (user) => {
-        this.setState({ ...this.state, user });
-    };
-    componentDidMount() {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-            this.setState({ ...this.state, user });
-            console.log(user);
+export const VERIFY_TOKEN_QUERY = gql`
+    query VERIFY_TOKEN($token: String!) {
+        verifyToken(token: $token) {
+            id
+            username
+            email
         }
     }
-    render() {
-        return (
-            <UserProvider
-                value={{
-                    ...this.state,
-                    logOut: this.logOut,
-                    logIn: this.logIn
-                }}
-            >
-                {this.props.children}
-            </UserProvider>
-        );
-    }
-}
+`;
+
+const _UserProvider = (props) => {
+    const { children } = props;
+    const [user, setUser] = useState(null);
+    const [getToken, { data, loading }] = useLazyQuery(VERIFY_TOKEN_QUERY);
+    const logOut = () => {
+        localStorage.removeItem('token');
+        setUser(null);
+    };
+    const logIn = (user) => {
+        setUser(user);
+    };
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            getToken({ variables: { token } });
+        }
+        if (data) {
+            const { verifyToken } = data;
+            setUser(verifyToken);
+        }
+    }, [data]);
+    if (loading) return <ScreenLoader />;
+    return (
+        <UserProvider
+            value={{
+                logOut,
+                logIn,
+                user
+            }}
+        >
+            {children}
+        </UserProvider>
+    );
+};
 export default _UserProvider;

@@ -30,6 +30,7 @@ module.exports = gql`
         users: [User!]
         user(id: ID!): User
         profile(id: ID!): Profile
+        verifyToken(token: String!): User
     }
     type Mutation {
         signUp(email: String!, password: String!, username: String!): AuthToken!

@@ -23,6 +23,9 @@ function Header() {
                                     user ? (
                                         <>
                                             <li>
+                                                <p>Welcome! {user.email}</p>
+                                            </li>
+                                            <li>
                                                 <button
                                                     className={
                                                         'btn btn-primary'
@@ -34,9 +37,6 @@ function Header() {
                                                 >
                                                     Logout
                                                 </button>
-                                            </li>
-                                            <li>
-                                                <p>Welcome! {user.email}</p>
                                             </li>
                                         </>
                                     ) : (

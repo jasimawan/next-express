@@ -4,10 +4,11 @@ const {
     generatePasswordHash,
     verifyPassword
 } = require('../utils/generatePasswordHash');
-const { getUserByEmail } = require('./UserService')
+const getUserFromJwt = require('../utils/getUserFromJwt');
+const { getUserByEmail, getUserById } = require('./UserService');
 exports.signUpUser = async (data) => {
     const checkUser = await getUserByEmail(data.email);
-    if (checkUser) throw new Error("User already registered...")
+    if (checkUser) throw new Error('User already registered...');
     const user = await new User({
         ...data,
         password: generatePasswordHash(data.password)
@@ -28,4 +29,10 @@ exports.loginUser = async (data) => {
         user,
         token
     };
+};
+
+exports.validateToken = async (token) => {
+    const { id } = getUserFromJwt(token);
+    const user = await getUserById(id);
+    return user;
 };

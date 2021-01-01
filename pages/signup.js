@@ -3,6 +3,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import MainLayout from '../components/MainLayout';
 import { userContext } from '../contexts/UserContext';
+import { gql, useMutation } from '@apollo/client';
+
+const SIGNUP_MUTATION = gql`
+    mutation SIGNUP_USER(
+        $email: String!
+        $password: String!
+        $username: String!
+    ) {
+        signUp(email: $email, password: $password, username: $username) {
+            token
+        }
+    }
+`;
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -10,12 +23,27 @@ const Signup = () => {
     const [username, setUsername] = useState('');
     const router = useRouter();
     const { user } = useContext(userContext);
+    const [signUp] = useMutation(SIGNUP_MUTATION);
     if (user) router.push('/');
+
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        signUp({
+            variables: {
+                email,
+                password,
+                username
+            }
+        })
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err.message));
+    };
+
     return (
         <MainLayout>
             <div className={'container'}>
                 <div className={'auth-wrapper'}>
-                    <form className={'auth-form'}>
+                    <form className={'auth-form'} onSubmit={handleSignUp}>
                         <div className={'form-group'}>
                             <input
                                 type={'text'}
