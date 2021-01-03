@@ -1,9 +1,10 @@
+import { Container } from 'react-bootstrap';
 import MainLayout from '../components/MainLayout';
 
 const Index = () => {
     return (
         <MainLayout>
-            <div className={'container'}>
+            <Container>
                 <h1>Some Heading</h1>
                 <p>
                     Ipsum ullamco cupidatat nulla nisi labore cillum duis ipsum. Aute officia non
@@ -54,7 +55,7 @@ const Index = () => {
                     fugiat magna adipisicing exercitation ad ullamco nostrud veniam exercitation
                     exercitation ea.
                 </p>
-            </div>
+            </Container>
         </MainLayout>
     );
 };

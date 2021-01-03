@@ -1,11 +1,12 @@
+import { Container } from 'react-bootstrap';
 import MainLayout from '../components/MainLayout';
 
 const about = () => {
     return (
         <MainLayout>
-            <div className={'container'}>
+            <Container>
                 <h1>About us</h1>
-            </div>
+            </Container>
         </MainLayout>
     );
 };

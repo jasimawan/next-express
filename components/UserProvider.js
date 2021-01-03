@@ -16,7 +16,8 @@ export const VERIFY_TOKEN_QUERY = gql`
 const _UserProvider = (props) => {
     const { children } = props;
     const [user, setUser] = useState(null);
-    const [getToken, { data, loading }] = useLazyQuery(VERIFY_TOKEN_QUERY);
+    const [loading, setLoading] = useState(true);
+    const [getToken, { data }] = useLazyQuery(VERIFY_TOKEN_QUERY);
     const logOut = () => {
         localStorage.removeItem('token');
         setUser(null);
@@ -28,10 +29,13 @@ const _UserProvider = (props) => {
         const token = localStorage.getItem('token');
         if (token) {
             getToken({ variables: { token } });
+        } else {
+            setLoading(false);
         }
         if (data) {
             const { verifyToken } = data;
             setUser(verifyToken);
+            setLoading(false);
         }
     }, [data]);
     if (loading) return <ScreenLoader />;
