@@ -1,4 +1,4 @@
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import { UserProvider } from '../contexts/UserContext';
 import ScreenLoader from './ScreenLoader';
@@ -41,8 +41,7 @@ const _UserProvider = (props) => {
                 logOut,
                 logIn,
                 user
-            }}
-        >
+            }}>
             {children}
         </UserProvider>
     );

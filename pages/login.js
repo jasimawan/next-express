@@ -64,17 +64,13 @@ const Login = () => {
                         />
                     </div>
                     <div className={'form-group'}>
-                        <Link href={'/signup'}>
-                            Not registered yet? Click here
-                        </Link>
+                        <Link href={'/signup'}>Not registered yet? Click here</Link>
                     </div>
                     <div className={'form-group'}>
                         <input
                             type={'submit'}
                             value={'Login'}
-                            className={
-                                'btn btn-primary btn-success btn-max-width'
-                            }
+                            className={'btn btn-primary btn-success btn-max-width'}
                         />
                     </div>
                 </form>

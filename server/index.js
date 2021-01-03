@@ -35,12 +35,8 @@ app.prepare()
 
         app.listen(process.env.PORT, (err) => {
             if (err) throw err;
-            console.log(
-                `> Express Ready on http://localhost:${process.env.PORT}`
-            );
-            console.log(
-                `> Apollo Ready on http://localhost:${process.env.PORT}/graphql`
-            );
+            console.log(`> Express Ready on http://localhost:${process.env.PORT}`);
+            console.log(`> Apollo Ready on http://localhost:${process.env.PORT}/graphql`);
         });
     })
     .catch((ex) => {

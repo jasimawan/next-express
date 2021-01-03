@@ -1,9 +1,6 @@
 const User = require('../models/User');
 const generateJwt = require('../utils/generateJwt');
-const {
-    generatePasswordHash,
-    verifyPassword
-} = require('../utils/generatePasswordHash');
+const { generatePasswordHash, verifyPassword } = require('../utils/generatePasswordHash');
 const getUserFromJwt = require('../utils/getUserFromJwt');
 const { getUserByEmail, getUserById } = require('./UserService');
 exports.signUpUser = async (data) => {
@@ -22,8 +19,7 @@ exports.signUpUser = async (data) => {
 exports.loginUser = async (data) => {
     const user = await getUserByEmail(data.email);
     if (!user) throw new Error('User not found');
-    if (!verifyPassword(data.password, user.password))
-        throw new Error('Invalid password');
+    if (!verifyPassword(data.password, user.password)) throw new Error('Invalid password');
     const token = generateJwt({ id: user._id });
     return {
         user,

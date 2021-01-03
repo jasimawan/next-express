@@ -6,11 +6,7 @@ import { userContext } from '../contexts/UserContext';
 import { gql, useMutation } from '@apollo/client';
 
 const SIGNUP_MUTATION = gql`
-    mutation SIGNUP_USER(
-        $email: String!
-        $password: String!
-        $username: String!
-    ) {
+    mutation SIGNUP_USER($email: String!, $password: String!, $username: String!) {
         signUp(email: $email, password: $password, username: $username) {
             token
         }
@@ -72,17 +68,13 @@ const Signup = () => {
                             />
                         </div>
                         <div className={'form-group'}>
-                            <Link href={'/login'}>
-                                Already registered? Click here
-                            </Link>
+                            <Link href={'/login'}>Already registered? Click here</Link>
                         </div>
                         <div className={'form-group'}>
                             <input
                                 type={'submit'}
                                 value={'Signup'}
-                                className={
-                                    'btn btn-primary btn-success btn-max-width'
-                                }
+                                className={'btn btn-primary btn-success btn-max-width'}
                             />
                         </div>
                     </form>

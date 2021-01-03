@@ -10,8 +10,8 @@ const ScreenLoader = () => {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}
-                type='Watch'
-                color='#00BFFF'
+                type="Watch"
+                color="#00BFFF"
                 height={60}
                 width={60}
             />

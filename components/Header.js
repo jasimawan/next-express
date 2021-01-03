@@ -27,14 +27,11 @@ function Header() {
                                             </li>
                                             <li>
                                                 <button
-                                                    className={
-                                                        'btn btn-primary'
-                                                    }
+                                                    className={'btn btn-primary'}
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         logOut();
-                                                    }}
-                                                >
+                                                    }}>
                                                     Logout
                                                 </button>
                                             </li>
@@ -42,14 +39,10 @@ function Header() {
                                     ) : (
                                         <>
                                             <li>
-                                                <Link href={'/login'}>
-                                                    Login
-                                                </Link>
+                                                <Link href={'/login'}>Login</Link>
                                             </li>
                                             <li>
-                                                <Link href={'/signup'}>
-                                                    Sign Up
-                                                </Link>
+                                                <Link href={'/signup'}>Sign Up</Link>
                                             </li>
                                         </>
                                     )
